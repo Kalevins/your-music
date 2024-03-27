@@ -2,12 +2,12 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import {
   Login,
-  Home
+  Home,
+  Details
 } from "@/pages";
 import { LoadingScreen } from "@/components";
-import { IsValid, Loading } from "@/containers";
+import { Menus, Loading } from "@/containers";
 import { useAuth } from "@/hooks";
-
 export function Router() {
   const { isValid, isInValidation } = useAuth();
 
@@ -25,10 +25,11 @@ export function Router() {
       )}
       {isValid && !isInValidation && (
         <Route path="/" element={<Loading />} >
-          <Route path="/" element={<IsValid />} >
+          <Route path="/" element={<Menus />} >
             <Route path="/" element={<Home />} />
-            <Route path="/*" element={<Navigate to="/" replace />} />
           </Route>
+          <Route path="/*" element={<Navigate to="/" replace />} />
+          <Route path="/details/:id" element={<Details />} />
         </Route>
       )}
       </Routes>

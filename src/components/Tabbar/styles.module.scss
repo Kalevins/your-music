@@ -4,6 +4,7 @@
 .tabbar {
   position: absolute;
   height: 100%;
+  z-index: 20;
 
   .container {
     position: sticky;
@@ -13,5 +14,41 @@
     padding: 10px;
     box-sizing: border-box;
     background: rgba(#000000, 0.2);
+
+    .logo {
+
+    }
+
+    .items {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+      height: 100%;
+
+      .item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+
+        svg {
+          fill: #ffffff;
+          width: 80%;
+          height: 80%;
+        }
+
+        &:hover {
+          background: rgba(#ffffff, 0.1);
+        }
+
+        &#active {
+          background: rgba(#ffffff, 0.1);
+        }
+      }
+    }
   }
 }

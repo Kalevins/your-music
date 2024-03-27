@@ -5,19 +5,17 @@ import { ErrorMessage } from "@hookform/error-message"
 
 import { useAuth } from '@/hooks';
 import { LoadingScreen } from '@/components';
-import { encryptAES } from '@/utils'
 
 import styles from './styles.module.scss';
 
 export function Login() {
-  const { login, setValidated } = useAuth()
+  const { login } = useAuth()
   const navigate = useNavigate()
   const [loadingLogin, setLoadingLogin] = useState(false)
 
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm({
     criteriaMode: 'all',
@@ -27,17 +25,10 @@ export function Login() {
     setLoadingLogin(true)
     login({ username, password })
       .then(() => {
-        setValue('username', '')
-        setValue('password', '')
-        setValidated(true)
-        sessionStorage.setItem('user', encryptAES(JSON.stringify({ username, password })))
-      })
-      .catch(() => {
-        setValidated(false)
+        navigate('/')
       })
       .finally(() => {
         setLoadingLogin(false)
-        navigate('/')
       })
   }
 

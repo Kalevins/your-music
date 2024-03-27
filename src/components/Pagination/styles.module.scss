@@ -1,0 +1,48 @@
+@import '@/styles/colors.scss';
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  width: 100%;
+  position: sticky;
+  bottom: 0;
+  background-color: $black;
+  z-index: 10;
+  padding: 20px;
+
+  button {
+    margin: 0 2px;
+    cursor: pointer;
+    padding: 6px 12px;
+    transition: background-color 0.3s;
+    -webkit-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: none;
+    color: $white;
+
+    &#active {
+      color: white;
+      background-color: $primary;
+    }
+
+    &:hover:not(#active) {
+      background-color: rgba($primary, 0.5);
+      color: white;
+    }
+  }
+
+  .pages {
+    display: flex;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    gap: 5px;
+  }
+
+  .number {
+    display: flex;
+  }
+}

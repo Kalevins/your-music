@@ -3,5 +3,124 @@
 @import '@/styles/colors';
 
 .main {
-  height: 200vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 80px;
+  position: relative;
+
+  > h1 {
+    background: linear-gradient(90deg, $primary, $secondary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .filters {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: $black;
+    z-index: 10;
+    padding: 20px;
+  }
+
+  .tracks {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    width: 100%;
+    gap: 20px;
+    margin-top: 20px;
+
+    .track {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: rgba($white, 0.05);
+      box-shadow: 0 0 10px rgba($black, 0.1);
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: rgba($white, 0.1);
+      }
+
+      .imageContainer {
+        width: 200px;
+        height: 200px;
+        border-radius: 5px;
+        position: relative;
+
+        > img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 5px;
+        }
+
+        .favorite {
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          width: 30px;
+          height: 30px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: $white;
+          border: none;
+          border-radius: 50%;
+          padding: 7px;
+          cursor: pointer;
+          pointer-events: auto;
+          transition: all 0.3s;
+
+          &#active {
+            background-color: $primary;
+
+            svg {
+              fill: $white;
+            }
+          }
+
+          &:hover {
+            box-shadow: 0 0 10px rgba($secondary, 0.5);
+          }
+
+          > svg {
+            width: 100%;
+            height: auto;
+          }
+        }
+      }
+
+      .info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 5px;
+
+        > h3 {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          width: 100%;
+          color: $white;
+        }
+
+        > p {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          color: $white;
+          width: 100%;
+        }
+      }
+    }
+  }
 }

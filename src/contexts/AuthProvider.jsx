@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 
 import { authContext } from '@/contexts'
-import { decryptAES } from '@/utils'
+import { decryptAES, encryptAES } from '@/utils'
 import { useLoading } from '@/hooks'
+import { getToken } from '@/services'
 
 export const AuthProvider = ({ children }) => {
   const [isValid, setIsValid] = useState(false)
@@ -11,10 +12,17 @@ export const AuthProvider = ({ children }) => {
   const { setLoading } = useLoading()
 
   const login = ({ username, password }) => {
-    if (username && password) {
-      return Promise.resolve()
-    }
-    return Promise.reject()
+    getToken()
+      .then((response) => {
+        setIsValid(true)
+        sessionStorage.setItem('token', response.access_token)
+        sessionStorage.setItem('user', encryptAES(JSON.stringify({ username, password })))
+        return Promise.resolve()
+      })
+      .catch(() => {
+        setIsValid(false)
+        return Promise.reject()
+      })
   }
 
   const logout = () => {
@@ -27,21 +35,13 @@ export const AuthProvider = ({ children }) => {
     setIsInValidation(true)
     const user = decryptAES(sessionStorage.getItem('user'))
     const userParsed = JSON.parse(user) || {}
-    login({ username: userParsed?.username, password: userParsed?.password })
-      .then(() => {
-        setIsValid(true)
-      })
-      .catch(() => {
-        setIsValid(false)
-      })
-      .finally(() => {
-        setLoading(false)
-        setIsInValidation(false)
-      })
-  }
-
-  const setValidated = (value) => {
-    setIsValid(value)
+    if (userParsed.username && userParsed.password) {
+      setIsValid(true)
+    } else {
+      setIsValid(false)
+    }
+    setIsInValidation(false)
+    setLoading(false)
   }
 
   const getUser = () => {
@@ -67,7 +67,6 @@ export const AuthProvider = ({ children }) => {
     <authContext.Provider
       value={{
         isValid,
-        setValidated,
         isInValidation,
         user,
         login,

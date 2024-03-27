@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import { useAuth } from '@/hooks';
 
 import styles from './styles.module.scss';
 import logo from '@/assets/logos/logo.svg';
-import { TbLogout2 } from 'react-icons/tb'
+import { RiHome2Line, RiHeart3Line, RiLogoutBoxLine   } from "react-icons/ri";
 
 export const Tabbar = () => {
-  const { user, logout } = useAuth()
+  const { logout } = useAuth()
   const [isOpen, setIsOpen] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
@@ -17,32 +17,23 @@ export const Tabbar = () => {
     {
       id: 'home',
       name: 'Home',
-      icon: <TbLogout2 />,
-      routes: [
-        { path: '/home' },
-        { path: '/' },
-      ]
+      icon: <RiHome2Line />,
+      route: "/"
     },
     {
-      id: 'profile',
-      name: 'Profile',
-      icon: <TbLogout2 />,
-      routes: [
-        { path: '/profile' },
-      ]
-    },
-    {
-      id: 'settings',
-      name: 'Settings',
-      icon: <TbLogout2 />,
-      routes: [
-        { path: '/settings' },
-      ]
+      id: 'favorites',
+      name: 'Favorites',
+      icon: <RiHeart3Line  />,
+      route: "/favorites"
     }
   ]
 
   const handleNavigate = (path) => {
     navigate(path)
+  }
+
+  const handleLogout = () => {
+    logout()
   }
 
   return (
@@ -56,16 +47,20 @@ export const Tabbar = () => {
             { items.map((item) => (
               <li
                 key={item.id}
-                id={item.routes.find((route) => route.path === location.pathname) ? styles.active : ''}
-                onClick={() => handleNavigate(item.id)}
+                className={styles.item}
+                id={item.route === location.pathname ? styles.active : ''}
+                onClick={() => handleNavigate(item.route)}
               >
                 {item.icon}
-                <span>{item.name}</span>
+                {/* <span>{item.name}</span> */}
               </li>
             )) }
-            <li onClick={() => {}}>
-              <TbLogout2 />
-              <span>Logout</span>
+            <li
+              className={styles.item}
+              onClick={() => handleLogout()}
+            >
+              <RiLogoutBoxLine  />
+              {/* <span>Logout</span> */}
             </li>
           </ul>
         </nav>

@@ -4,7 +4,7 @@ import { Tabbar } from '@/components'
 
 import styles from './styles.module.scss'
 
-export const IsValid = () => {
+export const Menus = () => {
 
   return (
     <main className={styles.main}>

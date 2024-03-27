@@ -1,14 +1,16 @@
-import {
-  axiosInstanceJson,
-} from "@/services"
+import { axiosInstanceAccount, axiosInstanceApi } from "@/services"
+import { clientId, clientSecret } from "@/utils"
 
-export const login = async ({
-  user,
-  pwd
-}) => {
-  const { data } = await axiosInstanceJson.post("/api/login", {
-    user,
-    pwd
+export const getToken = async () => {
+  const { data } = await axiosInstanceAccount.post("token", {
+    grant_type: "client_credentials",
+    client_id: clientId,
+    client_secret: clientSecret
   })
+  return data
+}
+
+export const validateToken = async () => {
+  const { data } = await axiosInstanceApi.get("me")
   return data
 }
