@@ -1,0 +1,10 @@
+@import '@/styles/colors';
+
+.main {
+  position: relative;
+
+  .container {
+    background-color: $black;
+    min-height: 100vh;
+  }
+}

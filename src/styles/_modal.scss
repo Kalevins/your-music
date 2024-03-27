@@ -1,0 +1,205 @@
+@import '@/styles/colors';
+
+$circleIndicatorSize: 100px;
+$circleCloseSize: 50px;
+
+.modalContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(#ffffff, 0);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+
+  .modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    position: relative;
+    width: max-content;
+    max-width: 90%;
+    height: max-content;
+    max-height: 90%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 40px;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px 0 rgba(#000000, 0.2);
+
+    .texts {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      gap: 30px;
+
+      > h3 {
+        font-weight: bold;
+        color: $primary;
+      }
+
+      article {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    .tableContainer {
+      height: 100%;
+      overflow: auto;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+
+      .inputContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        height: 100%;
+
+        label {
+          color: $black
+        }
+
+        input {
+          background-origin: border-box;
+          background-clip: padding-box, border-box;
+          width: 100%;
+          min-width: 70vw;
+          padding: 5px 10px;
+          border: double 1px transparent;
+          border-radius: 20px;
+          background-image: linear-gradient(white, white),
+            linear-gradient(90deg, $black, $black);
+
+          &.error {
+            border: double 1px transparent;
+            border-radius: 20px;
+            background-image: linear-gradient(white, white),
+              linear-gradient(90deg, red, red);
+          }
+
+          &:focus {
+            outline: none;
+          }
+
+          &:disabled {
+            background-image: linear-gradient($gray, $gray),
+            linear-gradient(90deg, $black, $black);
+          }
+        }
+      }
+
+      button {
+        width: max-content;
+        height: 50px;
+        border-radius: 10px;
+        font-weight: bold;
+        background-color: $tertiary;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+
+        svg {
+          width: 30px;
+          height: 30px;
+        }
+      }
+    }
+
+    .buttonsContainer {
+      display: flex;
+      width: 100%;
+      justify-content: space-evenly;
+      gap: 20px;
+
+      button {
+        width: 100%;
+        max-width: 200px;
+        height: 50px;
+        border-radius: 10px;
+        color: white;
+        font-weight: bold;
+        background-color: $primary;
+        cursor: pointer;
+
+        &:disabled {
+          background-color: $gray;
+          cursor: not-allowed;
+        }
+      }
+    }
+
+    .circleIndicator {
+      position: absolute;
+      top: calc($circleIndicatorSize / 2 * -1);
+      width: $circleIndicatorSize;
+      height: $circleIndicatorSize;
+      background-color: $primary;
+      border-radius: 50%;
+      border: 5px solid #ffffff;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      svg {
+        width: 50%;
+        height: 50%;
+      }
+    }
+
+    .exit {
+      position: absolute;
+      top: calc($circleCloseSize / 2 * -1);
+      right: calc($circleCloseSize / 2 * -1);
+      width: $circleCloseSize;
+      height: $circleCloseSize;
+      border-radius: 50%;
+      background-color: #ffffff;
+      box-sizing: border-box;
+      box-shadow: 0 0 10px 0 rgba(#000000, 0.2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+
+      &:hover {
+        box-shadow: 0 0 10px 0 rgba(#000000, 0.5);
+      }
+
+      svg {
+        width: 40%;
+        height: 40%;
+
+        path {
+          stroke: #000000;
+        }
+      }
+    }
+  }
+}

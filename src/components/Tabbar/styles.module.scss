@@ -1,0 +1,17 @@
+@import '@/styles/colors';
+@import '@/styles/breakpoints';
+
+.tabbar {
+  position: absolute;
+  height: 100%;
+
+  .container {
+    position: sticky;
+    top: 0;
+    width: 60px;
+    height: 100vh;
+    padding: 10px;
+    box-sizing: border-box;
+    background: rgba(#000000, 0.2);
+  }
+}

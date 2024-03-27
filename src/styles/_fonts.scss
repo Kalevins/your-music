@@ -1,0 +1,253 @@
+@import "breakpoints";
+
+@font-face {
+  font-family: 'Urbanist';
+  src: url('@/assets/fonts/Urbanist/Urbanist-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Urbanist';
+  src: url('@/assets/fonts/Urbanist/Urbanist-BlackItalic.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Urbanist';
+  src: url('@/assets/fonts/Urbanist/Urbanist-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Urbanist';
+  src: url('@/assets/fonts/Urbanist/Urbanist-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Urbanist';
+  src: url('@/assets/fonts/Urbanist/Urbanist-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Urbanist';
+  src: url('@/assets/fonts/Urbanist/Urbanist-ExtraBoldItalic.ttf') format('truetype');
+  font-weight: 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Urbanist';
+  src: url('@/assets/fonts/Urbanist/Urbanist-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Urbanist';
+  src: url('@/assets/fonts/Urbanist/Urbanist-ExtraLightItalic.ttf') format('truetype');
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Urbanist';
+  src: url('@/assets/fonts/Urbanist/Urbanist-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Urbanist';
+  src: url('@/assets/fonts/Urbanist/Urbanist-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Urbanist';
+  src: url('@/assets/fonts/Urbanist/Urbanist-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Urbanist';
+  src: url('@/assets/fonts/Urbanist/Urbanist-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Urbanist';
+  src: url('@/assets/fonts/Urbanist/Urbanist-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Urbanist';
+  src: url('@/assets/fonts/Urbanist/Urbanist-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Urbanist';
+  src: url('@/assets/fonts/Urbanist/Urbanist-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Urbanist';
+  src: url('@/assets/fonts/Urbanist/Urbanist-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Urbanist';
+  src: url('@/assets/fonts/Urbanist/Urbanist-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Urbanist';
+  src: url('@/assets/fonts/Urbanist/Urbanist-ThinItalic.ttf') format('truetype');
+  font-weight: 100;
+  font-style: italic;
+}
+
+$font-family: "Urbanist";
+$font-family-secondary: Roboto, sans-serif;
+
+small {
+  font-size: 0.625rem;
+  font-weight: 350;
+}
+
+p {
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 14px;
+}
+
+button,
+input,
+select,
+option,
+textarea {
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 14px;
+}
+
+h1, h3, h4, h5 ,h6 {
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 2.5rem;
+  letter-spacing: -2px;
+  line-height: 48px;
+  font-weight: 750;
+}
+
+h2 {
+  font-size: 2.188rem;
+  line-height: 42px;
+  font-weight: bolder;
+}
+
+h3 {
+  font-size: 1.563rem;
+  line-height: 30px;
+  font-weight: 400;
+}
+
+h4 {
+  font-size: 0.938rem;
+  line-height: 18px;
+}
+
+
+@media only screen and (min-width: $md) {
+  h1 {
+    font-size: 3.75rem;
+    line-height: 72px;
+  }
+
+  p {
+    font-size: 0.75rem;
+    line-height: 14px;
+  }
+
+  button,
+  input,
+  select,
+  option,
+  textarea {
+    font-size: 0.75rem;
+    line-height: 14px;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    line-height: 48px;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    line-height: 24px;
+  }
+}
+
+@media only screen and (min-width: $lg) {
+  h1 {
+    font-size: 5rem;
+    line-height:96px;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 19px;
+  }
+
+  button,
+  input,
+  select,
+  option,
+  textarea {
+    font-size: 1rem;
+    line-height: 19px;
+  }
+}
+
+@media only screen and (min-width: $xl) {
+  h1 {
+    font-size: 6.25rem;
+    line-height: 120px;
+  }
+
+  h2 {
+    font-size: 3.125rem;
+    line-height: 48px;
+  }
+
+  h3 {
+    font-size: 1.563rem;
+    line-height: 30px;
+  }
+}
+
+@media only screen and (min-width: $xxl) {
+
+}

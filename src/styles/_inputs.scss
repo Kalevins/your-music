@@ -1,0 +1,23 @@
+input,
+select,
+textarea {
+  border: 0;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  border-radius: 5px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

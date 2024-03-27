@@ -1,0 +1,68 @@
+@import "colors";
+@import "responsive";
+@import "fonts";
+@import "buttons";
+@import "inputs";
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $white;
+  font-family: $font-family, $font-family-secondary, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    border-radius: 20px;
+  }
+  &::-webkit-scrollbar-track {
+    background: $black;
+    border-radius: 0px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $primary;
+    border-radius: 20px;
+  }
+
+  input,
+  select,
+  textarea {
+    font-family: $font-family, $font-family-secondary, sans-serif;
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
+
+  button {
+    font-family: $font-family, $font-family-secondary, sans-serif;
+  }
+
+  a {
+    color: inherit;
+
+    &:link,
+    &:visited,
+    &:hover,
+    &:active {
+      text-decoration: none;
+    }
+  }
+
+  ul, label, p, span, h1, h2, h3, h4, h5 ,h6, small, label {
+    font-family: $font-family, $font-family-secondary, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  code {
+    font-family: $font-family, $font-family-secondary, sans-serif;
+  }
+}
