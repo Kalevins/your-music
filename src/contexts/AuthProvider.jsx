@@ -12,17 +12,19 @@ export const AuthProvider = ({ children }) => {
   const { setLoading } = useLoading()
 
   const login = ({ username, password }) => {
-    getToken()
-      .then((response) => {
-        setIsValid(true)
-        sessionStorage.setItem('token', response.access_token)
-        sessionStorage.setItem('user', encryptAES(JSON.stringify({ username, password })))
-        return Promise.resolve()
-      })
-      .catch(() => {
-        setIsValid(false)
-        return Promise.reject()
-      })
+    return new Promise((resolve, reject) => {
+      getToken()
+        .then((response) => {
+          setIsValid(true)
+          sessionStorage.setItem('token', response.access_token)
+          sessionStorage.setItem('user', encryptAES(JSON.stringify({ username, password })))
+            resolve()
+        })
+        .catch(() => {
+          setIsValid(false)
+            reject()
+        })
+    })
   }
 
   const logout = () => {

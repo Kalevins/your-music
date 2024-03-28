@@ -11,6 +11,7 @@ body {
   font-family: $font-family, $font-family-secondary, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: $black;
 
   &::-webkit-scrollbar {
     width: 5px;

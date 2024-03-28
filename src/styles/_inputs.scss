@@ -1,3 +1,5 @@
+@import '@/styles/colors';
+
 input,
 select,
 textarea {
@@ -9,6 +11,12 @@ textarea {
   &:focus {
     outline: none;
   }
+}
+
+input::-webkit-input-placeholder,
+select::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: $black;
 }
 
 input::-webkit-outer-spin-button,

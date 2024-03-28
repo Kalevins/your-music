@@ -43,8 +43,8 @@ axiosInstanceApi.interceptors.response.use(
           Promise.reject(error)
         })
     } else {
-      sessionStorage.clear()
-      window.location.reload()
+      //sessionStorage.clear()
+      //window.location.reload()
       Promise.reject(error)
     }
   }

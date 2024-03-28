@@ -8,10 +8,10 @@ export const Menus = () => {
 
   return (
     <main className={styles.main}>
-      <Tabbar />
       <div className={styles.container}>
         <Outlet />
       </div>
+      <Tabbar />
     </main>
   )
 }

@@ -3,7 +3,10 @@
 
 .tabbar {
   position: absolute;
+  top: 0;
+  left: 0;
   height: 100%;
+  width: auto;
   z-index: 20;
 
   .container {
@@ -16,7 +19,18 @@
     background: rgba(#000000, 0.2);
 
     .logo {
-
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding-bottom: 20px;
+      padding-top: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      background: linear-gradient(90deg, $primary, $secondary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      user-select: none;
     }
 
     .items {
@@ -46,8 +60,31 @@
         }
 
         &#active {
-          background: rgba(#ffffff, 0.1);
+          background-color: $primary;
         }
+      }
+    }
+  }
+
+  @media screen and (max-width: $md) {
+    position: sticky;
+    top: auto;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+
+    .container {
+      flex-direction: row;
+      width: 100%;
+      height: 60px;
+      background-color: $black;
+
+      .logo {
+        display: none;
+      }
+
+      .items {
+        flex-direction: row;
       }
     }
   }

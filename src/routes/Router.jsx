@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import {
   Login,
   Home,
-  Details
+  Details,
+  Favorites
 } from "@/pages";
 import { LoadingScreen } from "@/components";
 import { Menus, Loading } from "@/containers";
@@ -27,8 +28,9 @@ export function Router() {
         <Route path="/" element={<Loading />} >
           <Route path="/" element={<Menus />} >
             <Route path="/" element={<Home />} />
+            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/*" element={<Navigate to="/" replace />} />
           </Route>
-          <Route path="/*" element={<Navigate to="/" replace />} />
           <Route path="/details/:id" element={<Details />} />
         </Route>
       )}

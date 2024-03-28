@@ -1,29 +1,32 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useAnimate } from 'framer-motion'
 
-import { getTrack } from '@/services';
+import { getTrackById } from '@/services';
 import { useLoading, useLocalStorage } from '@/hooks';
 import { getTimeDuration } from '@/utils';
 
 import styles from './styles.module.scss';
-import { RiHeart3Line } from 'react-icons/ri';
+import { RiHeart3Line, RiArrowGoBackFill  } from 'react-icons/ri';
 import { FaSpotify } from "react-icons/fa6";
 
 export function Details() {
+  const [scope, animate] = useAnimate()
   const { setLoading } = useLoading()
+  const navigate = useNavigate()
   const [favorites, setFavorites] = useLocalStorage('favorites', true)
   const { id } = useParams()
   const [track, setTrack] = useState({})
 
   useEffect(() => {
     setLoading(true)
-    getTrack(id)
+    getTrackById(id)
       .then((response) => {
-        console.log('response', response)
         setTrack(response)
       })
       .finally(() => {
         setLoading(false)
+        animate(`.${styles.screenAnimation}`, {scaleY: [1, 0], originY: 0}, {duration: 0.5})
       })
   }, [])
 
@@ -39,38 +42,63 @@ export function Details() {
 
   const handleOpenSpotify = () => {
     window.open(track.external_urls.spotify, '_blank')
-    window.close()
+  }
+
+  const handleNavigate = async () => {
+    await animate(`.${styles.screenAnimation}`, {scaleY: [0, 1], originY: 0}, {duration: 0.5})
+    navigate("/")
   }
 
   return (
-    <>
-      <main className={styles.main}>
+      <div className={styles.container} ref={scope}>
+    <main className={styles.main} >
         <div className={styles.backgroundImage} style={{backgroundImage: `url(${track?.album?.images[0]?.url})`}} />
         <h1>Your Music</h1>
         <div className={styles.track}>
           <h2>{track?.name}</h2>
           <div className={styles.info}>
-            <h3>{`Album: ${track?.album?.name}`}</h3>
-            <h3>{`Duration: ${getTimeDuration(track?.duration_ms)}`}</h3>
-            <h3>{`Popularity: ${track?.popularity}`}</h3>
-            <h3>{`Explicit: ${track?.explicit ? 'Yes' : 'No'}`}</h3>
+            <div className={styles.item}>
+              <h3>Album</h3>
+              <h3>{track?.album?.name}</h3>
+            </div>
+            <div className={styles.item}>
+              <h3>Duration</h3>
+              <h3>{getTimeDuration(track?.duration_ms)}</h3>
+            </div>
+            <div className={styles.item}>
+              <h3>Popularity</h3>
+              <h3>{track?.popularity}</h3>
+            </div>
+            <div className={styles.item}>
+              <h3>Explicit</h3>
+              <h3>{track?.explicit ? 'Yes' : 'No'}</h3>
+            </div>
           </div>
-          <h2>{track?.artists?.map((artist) => artist.name).join('- ')}</h2>
+          <h2>{track?.artists?.map((artist) => artist.name).join(' - ')}</h2>
           <button
-            className={styles.favorite}
-            id={favorites.includes(track.id) ? styles.active : ''}
-            onClick={() => handleFavorite(track.id)}
+            className={styles.exit}
+            onClick={() => handleNavigate()}
           >
-            <RiHeart3Line />
+            <RiArrowGoBackFill  />
           </button>
-          <button
-            className={styles.playSpotify}
-            onClick={() => handleOpenSpotify()}
-          >
-            <FaSpotify />
-          </button>
+          <div className={styles.buttonsContainer}>
+            <button
+              className={styles.favorite}
+              id={favorites.includes(track.id) ? styles.active : ''}
+              onClick={() => handleFavorite(track.id)}
+            >
+              <RiHeart3Line />
+            </button>
+            <button
+              className={styles.playSpotify}
+              onClick={() => handleOpenSpotify()}
+            >
+              <FaSpotify />
+            </button>
+          </div>
+        </div>
+      <div className={styles.screenAnimation} />
+    </main>
       </div>
-      </main>
-    </>
   )
 }

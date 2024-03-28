@@ -4,7 +4,6 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '@/hooks';
 
 import styles from './styles.module.scss';
-import logo from '@/assets/logos/logo.svg';
 import { RiHome2Line, RiHeart3Line, RiLogoutBoxLine   } from "react-icons/ri";
 
 export const Tabbar = () => {
@@ -39,9 +38,9 @@ export const Tabbar = () => {
   return (
     <div className={styles.tabbar}>
       <div className={styles.container}>
-        <div className={styles.logo} onClick={() => setIsOpen(!isOpen)}>
-          <img src={logo} alt='logoImage' />
-        </div>
+        <span className={styles.logo} onClick={() => setIsOpen(!isOpen)}>
+          YM
+        </span>
         <nav>
           <ul className={styles.items}>
             { items.map((item) => (
@@ -52,7 +51,6 @@ export const Tabbar = () => {
                 onClick={() => handleNavigate(item.route)}
               >
                 {item.icon}
-                {/* <span>{item.name}</span> */}
               </li>
             )) }
             <li
@@ -60,7 +58,6 @@ export const Tabbar = () => {
               onClick={() => handleLogout()}
             >
               <RiLogoutBoxLine  />
-              {/* <span>Logout</span> */}
             </li>
           </ul>
         </nav>

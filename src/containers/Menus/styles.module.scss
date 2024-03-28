@@ -1,10 +1,17 @@
 @import '@/styles/colors';
+@import '@/styles/breakpoints';
 
 .main {
   position: relative;
 
   .container {
-    background-color: $black;
+    display: flex;
     min-height: 100vh;
+    padding: 20px 80px;
+    box-sizing: border-box;
+
+    @media screen and (max-width: $md) {
+      padding: 20px;
+    }
   }
 }
