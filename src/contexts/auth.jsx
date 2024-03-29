@@ -1,15 +1,16 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, createContext, useContext } from 'react'
 
-import { authContext } from '@/contexts'
 import { decryptAES, encryptAES } from '@/utils'
-import { useLoading } from '@/hooks'
 import { getToken } from '@/services'
+import { loadingContext } from '@/contexts'
+
+export const authContext = createContext({})
 
 export const AuthProvider = ({ children }) => {
+  const { setLoading } = useContext(loadingContext)
   const [isValid, setIsValid] = useState(false)
   const [isInValidation, setIsInValidation] = useState(true)
   const [user, setUser] = useState(null)
-  const { setLoading } = useLoading()
 
   const login = ({ username, password }) => {
     return new Promise((resolve, reject) => {

@@ -1,3 +1,2 @@
-export * from './AuthProvider'
-export * from './Contexts'
-export * from './LoadingProvider'
+export * from './auth'
+export * from './loading'

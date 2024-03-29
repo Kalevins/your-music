@@ -7,7 +7,7 @@ import styles from './styles.module.scss'
 export const Menus = () => {
 
   return (
-    <main className={styles.main}>
+    <main className={styles.main} data-testid={"menus"}>
       <div className={styles.container}>
         <Outlet />
       </div>

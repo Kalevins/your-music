@@ -1,5 +1,6 @@
 @import '@/styles/colors.scss';
 @import '@/styles/breakpoints';
+@import '@/styles/responsive';
 
 .pagination {
   display: flex;
@@ -46,7 +47,7 @@
   .number {
     display: flex;
 
-    @media screen and (max-width: $md) {
+    @include responsiveTo($md) {
       display: none;
     }
   }

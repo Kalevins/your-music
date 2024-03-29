@@ -1,5 +1,7 @@
 @use '@/styles/buttons';
 @import '@/styles/colors';
+@import '@/styles/breakpoints';
+@import '@/styles/responsive';
 
 .search {
   display: flex;
@@ -39,6 +41,14 @@
       &:hover {
         background-color: rgba($black, 0.1);
       }
+    }
+  }
+
+  @include responsiveTo($md) {
+    width: 100%;
+
+    input {
+      width: 100%;
     }
   }
 }

@@ -1,17 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAnimate } from 'framer-motion'
 
 import { getTracksByName } from '@/services';
-import { useLoading, useLocalStorage } from '@/hooks';
+import { useLocalStorage } from '@/hooks';
 import { Pagination, SearchInput } from '@/components';
 import { suggestions } from '@/utils';
+import { loadingContext } from '@/contexts';
 
 import styles from './styles.module.scss';
 import { RiHeart3Line } from 'react-icons/ri';
 
 export function Home() {
-  const { setLoading } = useLoading()
+  const { setLoading } = useContext(loadingContext)
   const [scope, animate] = useAnimate()
   const [favorites, setFavorites] = useLocalStorage('favorites', true)
   const navigate = useNavigate()
@@ -19,28 +20,17 @@ export function Home() {
   const [search, setSearch] = useState('')
   const [searchAction, setSearchAction] = useState(false)
   const [numberElements, setNumberElements] = useState(0)
+  const [firstRender, setFirstRender] = useState(true)
   const [pagination, setPagination] = useState({
     offset: 0,
     limit: 20
   })
 
   useEffect(() => {
-    setLoading(true)
-    getTracksByName({
-      ...pagination,
-      name: "Droeloe"
-    })
-      .then((response) => {
-        setTracks(response.tracks.items)
-        setNumberElements(response.tracks.total)
-        scrollToTop()
-      })
-      .finally(() => {
-        setLoading(false)
-        animate(`.${styles.screenAnimation}`, {scaleY: [1, 0], originY: 1}, {duration: 0.5})
-        animate(`.${styles.track}`, {opacity: [0, 1]}, {duration: 1})
-      })
-  }, [])
+    if (!firstRender || tracks.length === 0) return
+    setFirstRender(false)
+    animate(`.${styles.track}`, {opacity: [0, 1]}, {duration: 1})
+  }, [tracks])
 
   useEffect(() => {
     setLoading(true)
@@ -55,6 +45,7 @@ export function Home() {
       })
       .finally(() => {
         setLoading(false)
+        animate(`.${styles.screenAnimation}`, {scaleY: [1, 0], originY: 1}, {duration: 0.5})
       })
   }, [searchAction, pagination])
 
@@ -99,6 +90,7 @@ export function Home() {
         {tracks.map((track) => (
           <div
             key={track.id}
+            data-testid={track.name}
             className={styles.track}
             onClick={() => handleNavigate(`/details/${track.id}`)}
           >
@@ -106,6 +98,7 @@ export function Home() {
               <img src={track.album.images[0].url} alt={track.name} />
               <button
                 className={styles.favorite}
+                data-testid={track.id}
                 id={favorites.includes(track.id) ? styles.active : ''}
                 onClick={(event) => handleFavorite(event, track.id)}
               >

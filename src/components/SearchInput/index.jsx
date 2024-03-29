@@ -20,7 +20,7 @@ export function SearchInput({ search, setSearch, handleSearch, suggestions = []}
     <div className={styles.search}>
       <input
         type='text'
-        placeholder='Search for a song'
+        placeholder='Search ...'
         value={search}
         onChange={(event) => setSearch(event.target.value)}
       />
@@ -41,7 +41,7 @@ export function SearchInput({ search, setSearch, handleSearch, suggestions = []}
             </li>
           ))}
         </ul>
-        )}
+      )}
     </div>
   )
 }

@@ -22,7 +22,7 @@ export function Pagination ({
   }
 
   return (
-    <div className={styles.pagination}>
+    <main className={styles.pagination}>
       <div className={styles.pages}>
         <button onClick={() => setPagination({
           ...pagination,
@@ -69,6 +69,6 @@ export function Pagination ({
           </button>
         ))}
       </div>
-    </div>
+    </main>
   )
 }

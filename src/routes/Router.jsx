@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import {
@@ -8,9 +9,10 @@ import {
 } from "@/pages";
 import { LoadingScreen } from "@/components";
 import { Menus, Loading } from "@/containers";
-import { useAuth } from "@/hooks";
+import { authContext } from "@/contexts";
+
 export function Router() {
-  const { isValid, isInValidation } = useAuth();
+  const { isValid, isInValidation } = useContext(authContext);
 
   return (
     <BrowserRouter>

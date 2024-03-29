@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 import { ErrorMessage } from "@hookform/error-message"
 
-import { useAuth } from '@/hooks';
+import { authContext } from '@/contexts';
 import { LoadingScreen } from '@/components';
 
 import styles from './styles.module.scss';
 
 export function Login() {
-  const { login } = useAuth()
+  const { login } = useContext(authContext)
   const navigate = useNavigate()
   const [loadingLogin, setLoadingLogin] = useState(false)
 
@@ -21,15 +21,14 @@ export function Login() {
     criteriaMode: 'all',
   })
 
-  const onSubmit = ({ username, password }) => {
+  const onSubmit = async ({ username, password }) => {
     setLoadingLogin(true)
-    login({ username, password })
-      .then(() => {
-        navigate('/')
-      })
-      .finally(() => {
-        setLoadingLogin(false)
-      })
+    try {
+      await login({ username, password })
+      navigate('/')
+    } finally {
+      setLoadingLogin(false)
+    }
   }
 
   return (

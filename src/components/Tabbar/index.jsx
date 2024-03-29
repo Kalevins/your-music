@@ -1,14 +1,13 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-import { useAuth } from '@/hooks';
+import { authContext } from '@/contexts';
 
 import styles from './styles.module.scss';
 import { RiHome2Line, RiHeart3Line, RiLogoutBoxLine   } from "react-icons/ri";
 
 export const Tabbar = () => {
-  const { logout } = useAuth()
-  const [isOpen, setIsOpen] = useState(false)
+  const { logout } = useContext(authContext)
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -36,9 +35,9 @@ export const Tabbar = () => {
   }
 
   return (
-    <div className={styles.tabbar}>
+    <div className={styles.tabbar} data-testid={'tabbar'}>
       <div className={styles.container}>
-        <span className={styles.logo} onClick={() => setIsOpen(!isOpen)}>
+        <span className={styles.logo}>
           YM
         </span>
         <nav>
@@ -47,6 +46,7 @@ export const Tabbar = () => {
               <li
                 key={item.id}
                 className={styles.item}
+                data-testid={item.id}
                 id={item.route === location.pathname ? styles.active : ''}
                 onClick={() => handleNavigate(item.route)}
               >
@@ -55,6 +55,7 @@ export const Tabbar = () => {
             )) }
             <li
               className={styles.item}
+              data-testid={"logout"}
               onClick={() => handleLogout()}
             >
               <RiLogoutBoxLine  />

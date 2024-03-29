@@ -1,5 +1,6 @@
 @import '@/styles/colors';
 @import '@/styles/breakpoints';
+@import '@/styles/responsive';
 
 .main {
   position: relative;
@@ -10,7 +11,7 @@
     padding: 20px 80px;
     box-sizing: border-box;
 
-    @media screen and (max-width: $md) {
+    @include responsiveTo($md) {
       padding: 20px;
     }
   }

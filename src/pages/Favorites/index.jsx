@@ -1,27 +1,32 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { getTracksById } from '@/services';
-import { useLoading, useLocalStorage } from '@/hooks';
+import { useLocalStorage } from '@/hooks';
+import { loadingContext } from '@/contexts';
 
 import styles from './styles.module.scss';
 import { RiHeart3Line } from 'react-icons/ri';
 
 export function Favorites() {
-  const { setLoading } = useLoading()
+  const { setLoading } = useContext(loadingContext)
   const [favorites, setFavorites] = useLocalStorage('favorites', true)
   const navigate = useNavigate()
   const [tracks, setTracks] = useState([])
   const [isEmpty, setIsEmpty] = useState(false)
 
   useEffect(() => {
+    if (favorites.length === 0) {
+      setIsEmpty(true)
+      return
+    }
     setLoading(true)
     getTracksById(favorites)
       .then((response) => {
         setTracks(response.tracks)
       })
       .catch(() => {
-        setIsEmpty([])
+        setIsEmpty(true)
       })
       .finally(() => {
         setLoading(false)
@@ -58,6 +63,7 @@ export function Favorites() {
                 <img src={track.album.images[0].url} alt={track.name} />
                 <button
                   className={styles.favorite}
+                  data-testid={track.id}
                   id={favorites.includes(track.id) ? styles.active : ""}
                   onClick={(event) => handleFavorite(event, track.id)}
                 >

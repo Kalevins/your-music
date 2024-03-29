@@ -1,6 +1,7 @@
 @use '@/styles/buttons';
 @import '@/styles/colors';
 @import '@/styles/breakpoints';
+@import '@/styles/responsive';
 
 .main {
   display: flex;
@@ -69,7 +70,7 @@
 
     }
 
-    @media screen and (max-width: $md) {
+    @include responsiveTo($md) {
       padding: 20px;
     }
   }

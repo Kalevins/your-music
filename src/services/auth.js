@@ -1,4 +1,4 @@
-import { axiosInstanceAccount, axiosInstanceApi } from "@/services"
+import { axiosInstanceAccount } from "@/services"
 import { clientId, clientSecret } from "@/utils"
 
 export const getToken = async () => {
@@ -7,10 +7,5 @@ export const getToken = async () => {
     client_id: clientId,
     client_secret: clientSecret
   })
-  return data
-}
-
-export const validateToken = async () => {
-  const { data } = await axiosInstanceApi.get("me")
   return data
 }
