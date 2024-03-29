@@ -30,7 +30,11 @@ export default defineConfig(({ command }) => {
       host: true,
       port: 3000
     },
-    base: command === 'build' ? '/YourMusic/' : '/',
+    base: '/',
+  }
+
+  if (command !== 'serve') {
+    config.base = '/YourMusic/'
   }
 
   return config
