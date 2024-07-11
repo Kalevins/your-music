@@ -15,7 +15,7 @@ export function Router() {
   const { isValid, isInValidation } = useContext(authContext);
 
   return (
-    <BrowserRouter basename={import.meta.env.DEV ? '/' : '/YourMusic/'}>
+    <BrowserRouter basename={import.meta.env.DEV ? '/' : '/your-music/'}>
       <Routes>
       {isInValidation && (
         <Route path="/*" element={<LoadingScreen />} />
