@@ -74,4 +74,48 @@
       padding: 20px;
     }
   }
+
+  #infoButton {
+    position: absolute;
+    top: 35px;
+    right: 20px;
+    width: 39px;
+    height: 40px;
+    padding: 10px;
+    border: none;
+    border-radius: 50%;
+    box-sizing: border-box;
+    background-color: $primary;
+    color: $white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $secondary;
+    }
+  }
+
+  .infoContainer {
+    position: absolute;
+    top: 30px;
+    right: 80px;
+    background-image: linear-gradient(90deg, $primary, $secondary);
+    color: $white;
+    border-radius: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+
+    .info {
+      padding: 10px 20px;
+
+      > p {
+        text-align: center;
+      }
+    }
+
+    @include responsiveTo($md) {
+      top: 100px;
+      right: 20px;
+    }
+  }
 }
